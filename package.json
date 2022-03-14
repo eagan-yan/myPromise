@@ -1,0 +1,14 @@
+{
+  "name": "mypromise-demo",
+  "version": "0.0.1",
+  "description": "手写Promise",
+  "main": "myPromise.js",
+  "scripts": {
+    "test": "promises-aplus-tests src/myPromise"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}

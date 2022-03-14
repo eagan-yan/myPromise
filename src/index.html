@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./myPromise.js"></script>
+  <title>手写Promise</title>
+</head>
+<body>
+
+</body>
+<script>
+
+  // console.log(11)
+  // const p1 = myPromise.resolve('oh, no!');
+  // p1.then((a) => {
+  //   console.log(a, '33')
+  // })
+  // console.log(22)
+
+//   let p = new myPromise((resolve, reject) => {
+//   console.log('2') 
+//   setTimeout(() => {
+//     console.log('5')
+//     resolve('这次一定')
+//     console.log('4')
+//   },3000)
+// })
+// p.then((b) => {
+//   console.log('4', b)
+// })
+
+
+// const promise1 = myPromise.resolve(3);
+// const promise2 = 42;
+// const promise3 = new myPromise((resolve, reject) => {
+//     setTimeout(resolve, 3000, 'foo');
+// });
+
+// myPromise.all([promise1, promise2, promise3]).then((values) => {
+//     console.log('=======', values);
+// });
+
+var p1 = new myPromise(function (resolve, reject) {
+    resolve('Success');
+});
+
+p1.then(function (value) {
+    console.log('1',value); // "Success!"
+    throw 'oh, no!11';
+}).catch(function (e) {
+    console.log('2',e); // "oh, no!"
+    throw e
+}).catch(function (b) {
+    console.log('Not fired due to the catch',b);
+    throw b
+}).catch(function (a) {
+    console.log('xxxxxxxx', a);
+}).then(function (a) {
+    console.log('xxxxxxxx111', a);
+});
+
+//以下行为与上述相同
+p1.then(function (value) {
+    console.log('3',value); // "Success!"
+    return myPromise.reject('oh, no!');
+}).catch(function (e) {
+    console.log('4',e); // "oh, no!"
+}).then(function () {
+    console.log('after a catch the chain is restored111');
+}, function () {
+    console.log('Not fired due to the catch');
+});
+
+// 捕获异常
+// const p2 = new myPromise(function (resolve, reject) {
+//     throw new Error('test');
+// });
+// p2.catch(function (error) {
+//     console.log('1111', error);
+// });
+
+
+// 测试代码
+// let p1 = new myPromise((resolve, reject) => {
+//     resolve(10)
+// })
+// p1.then(res => {
+//     console.log('fulfilled', res);
+//     return 2 * res
+// }).then(res => {
+//     console.log('fulfilled', res)
+// })
+
+// myPromise.resolve(new myPromise((resolve, reject) => {
+//   console.log('=====================')
+//   setTimeout(() => {
+//     resolve('ok');
+//   }, 3000);
+// })).then(data=>{
+//   console.log('success=======', data)
+// })
+
+
+//   console.log(222);
+// const promise = new myPromise((resolve, reject) => {
+//   console.log(555);
+//   // setTimeout(() => {
+//     resolve('成功');
+//   // },1000);
+//   console.log(666);
+// }).then(
+//   (data) => {
+//     console.log(444);
+//     setTimeout(() => {
+//       console.log('success111', data)
+//       return data
+//     }, 2000)
+//     console.log('success', data)
+   
+//   },
+//   (err) => {
+//     console.log('faild', err)
+//   }
+// ).then((data1) => {
+//   console.log(777);
+//   console.log('success1', data1)
+// })
+// console.log(333);
+
+
+// console.log('1')
+// let p = new myPromise((resolve, reject) => {
+//   console.log('2') 
+//   setTimeout(() => {
+//     console.log('5')
+//     resolve('这次一定')
+//     console.log('4')
+//   },3000)
+// })
+// p.then((result) => {
+//     console.log(result, 'result');
+   
+//   return result
+ 
+// }).then((result1) => { 
+//   console.log(result1, 'result1')
+// }, err => {
+//   console.log(err, 'err')
+// })
+
+// console.log('3')
+</script>
+</html>
